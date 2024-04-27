@@ -586,7 +586,7 @@
         "gridColor": 10401023,
         "gridAlpha": 0.8,
         "snap": false,
-        "zoomFactor": 0.546875,
+        "zoomFactor": 0.3216911764705888,
         "windowMask": false
       },
       "objectsGroups": [],
@@ -624,25 +624,9 @@
           "name": "Box1",
           "persistentUuid": "4b9ffbeb-d9bf-45c4-b961-6d51a1d0da65",
           "width": 126,
-          "x": 202,
-          "y": 504,
+          "x": 143,
+          "y": 609,
           "zOrder": 2,
-          "numberProperties": [],
-          "stringProperties": [],
-          "initialVariables": []
-        },
-        {
-          "angle": 0,
-          "customSize": true,
-          "depth": 1,
-          "height": 172,
-          "layer": "",
-          "name": "Box1",
-          "persistentUuid": "b3d112a3-0be5-4aef-a10d-b1b526b37178",
-          "width": 163,
-          "x": 1680,
-          "y": 217,
-          "zOrder": 3,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -655,8 +639,8 @@
           "layer": "",
           "name": "RedHouseSmall2",
           "persistentUuid": "c2c3f99a-76c9-4809-adaf-b91698f0e828",
-          "width": 363,
-          "x": 759,
+          "width": 372,
+          "x": 639,
           "y": -17,
           "zOrder": -1,
           "numberProperties": [],
@@ -674,6 +658,40 @@
           "x": 625,
           "y": 425,
           "zOrder": 5,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 225,
+          "keepRatio": true,
+          "layer": "",
+          "name": "RedHouseSmall2",
+          "persistentUuid": "fbc9b9a2-5521-4035-aa2e-40231a64ed7f",
+          "width": 142,
+          "x": 1398,
+          "y": -25,
+          "zOrder": 6,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": true,
+          "depth": 1,
+          "height": 700,
+          "keepRatio": true,
+          "layer": "",
+          "name": "RedHouseSmall2",
+          "persistentUuid": "2837e33e-d06e-4de9-876b-d5dd98fdf36d",
+          "width": 385,
+          "x": 2063,
+          "y": 6,
+          "zOrder": 6,
           "numberProperties": [],
           "stringProperties": [],
           "initialVariables": []
@@ -2409,6 +2427,17 @@
                 "",
                 "Left"
               ]
+            },
+            {
+              "type": {
+                "value": "PickNearest"
+              },
+              "parameters": [
+                "RedHouseSmall2",
+                "Twiggy.X()",
+                "Twiggy.Y()",
+                ""
+              ]
             }
           ],
           "actions": [
@@ -2423,23 +2452,6 @@
                 "RedHouseSmall2.CenterX()",
                 "RedHouseSmall2.CenterY()",
                 "3"
-              ]
-            },
-            {
-              "type": {
-                "value": "Physics2::AddRopeJoint"
-              },
-              "parameters": [
-                "Twiggy",
-                "Physics2",
-                "Twiggy.CenterX()",
-                "Twiggy.CenterY()",
-                "RedHouseSmall2",
-                "RedHouseSmall2.CenterX()",
-                "RedHouseSmall2.CenterY()",
-                "-1",
-                "",
-                "ropejoint"
               ]
             }
           ]
@@ -2470,13 +2482,13 @@
             },
             {
               "type": {
-                "value": "Physics2::ApplyImpulse"
+                "value": "Physics2::ApplyPolarForce"
               },
               "parameters": [
                 "Twiggy",
                 "Physics2",
-                "Twiggy.Physics2::LinearVelocityX()*0.001",
-                "Twiggy.Physics2::LinearVelocityY()*0.001",
+                "Twiggy.Physics2::LinearVelocityX()*0.1",
+                "Twiggy.Physics2::LinearVelocityY()*0.1",
                 "Twiggy.CenterX()",
                 "Twiggy.CenterY()"
               ]
@@ -2514,6 +2526,89 @@
                 "0.08",
                 "",
                 ""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetCameraCenterX"
+              },
+              "parameters": [
+                "",
+                "=",
+                "Twiggy.X()",
+                "",
+                "0"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "MouseButtonPressed"
+              },
+              "parameters": [
+                "",
+                "Left"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::Once"
+              },
+              "parameters": []
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "Physics2::AddRopeJoint"
+              },
+              "parameters": [
+                "Twiggy",
+                "Physics2",
+                "Twiggy.CenterX()",
+                "Twiggy.CenterY()",
+                "RedHouseSmall2",
+                "RedHouseSmall2.CenterX()",
+                "RedHouseSmall2.CenterY()",
+                "-1",
+                "",
+                "ropejoint"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "PosY"
+              },
+              "parameters": [
+                "Twiggy",
+                ">",
+                "750"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "PushScene"
+              },
+              "parameters": [
+                "",
+                "\"Untitled scene\""
               ]
             }
           ]
